@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="nav_drawer_width">240dp</dimen>
+    <dimen name="toolbar_elevation">3dp</dimen>
+    <dimen name="toolbar_drawer_btn_size">32dp</dimen>
+
+    <dimen name="item_messages_by_number_height">72dp</dimen>
+    <dimen name="item_messages_by_number_img_size">40dp</dimen>
+
+    <dimen name="dimen_1">4dp</dimen>
+    <dimen name="dimen_2">8dp</dimen>
+    <dimen name="dimen_3">16dp</dimen>
+    <dimen name="dimen_4">24dp</dimen>
+    <dimen name="dimen_5">32dp</dimen>
+
+
+    <dimen name="text_extra_large">24sp</dimen>
+    <dimen name="text_large">22sp</dimen>
+    <dimen name="text_medium_large">18sp</dimen>
+    <dimen name="text_medium">14sp</dimen>
+    <dimen name="text_medium_small">12sp</dimen>
+    <dimen name="text_small">10sp</dimen>
+
+</resources>

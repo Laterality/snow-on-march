@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/dimen_3"
+    android:paddingRight="@dimen/dimen_3"
+    android:paddingTop="@dimen/dimen_2"
+    android:paddingBottom="@dimen/dimen_2">
+
+    <ImageView
+        android:id="@+id/iv_item_messages_by_number_sender_img"
+        android:layout_width="@dimen/item_messages_by_number_img_size"
+        android:layout_height="@dimen/item_messages_by_number_img_size"
+        android:src="@drawable/ic_person_white_48px"
+        android:background="@drawable/bg_circular"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dimen_3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_item_messages_by_number_sender_img"
+        app:layout_constraintRight_toRightOf="parent">
+
+
+        <TextView
+            android:id="@+id/tv_item_message_by_number_sender_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="SOMEHOW"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_medium"/>
+
+
+        <TextView
+            android:id="@+id/tv_item_message_by_number_sender_excerpt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:text="WHATEVER"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_medium"/>
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
