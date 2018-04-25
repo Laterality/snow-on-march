@@ -1,4 +1,4 @@
-package objects;
+package latera.kr.snowonmarch.object;
 
 /**
  * Created by Jinwoo Shin on 2018-04-20.

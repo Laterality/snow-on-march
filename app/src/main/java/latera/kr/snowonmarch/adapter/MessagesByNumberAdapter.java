@@ -1,4 +1,4 @@
-package adapters;
+package latera.kr.snowonmarch.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import latera.kr.snowonmarch.R;
-import objects.TextMessageObject;
+import latera.kr.snowonmarch.object.TextMessageObject;
 
 /**
  * Created by Jinwoo Shin on 2018-04-20.
