@@ -4,23 +4,22 @@ import java.util.List;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
 
 public class GroupDBO extends RealmObject {
 	@PrimaryKey
-	private int mId;
-	private RealmList<PersonDBO> mPeople;
+	private int id;
+	private RealmList<PersonDBO> people;
 
 	public GroupDBO() { }
 
 	public GroupDBO(int id, List<PersonDBO> people) {
-		this.mId = id;
-		mPeople = new RealmList<>();
-		mPeople.addAll(people);
+		this.id = id;
+		this.people = new RealmList<>();
+		this.people.addAll(people);
 	}
 
-	public int getId() { return this.mId; }
-	public RealmList<PersonDBO> getPeople() { return this.mPeople; }
+	public int getId() { return this.id; }
+	public RealmList<PersonDBO> getPeople() { return this.people; }
 
 }
