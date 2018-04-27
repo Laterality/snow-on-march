@@ -43,7 +43,7 @@ public class SmsReceiver extends BroadcastReceiver {
 			Log.d(TAG, "Received Time: " + new DateTime(smsMessages[0].getTimestampMillis()).toString());
 			Log.d(TAG, "From: " + smsMessages[0].getDisplayOriginatingAddress());
 			Log.d(TAG, "Content: " + smsMessages[0].getMessageBody());
-			MySmsManager.onReceivSms(new MessageDBO(smsMessages[0].getDisplayOriginatingAddress(),
+			MySmsManager.onReceiveSms(new MessageDBO(smsMessages[0].getDisplayOriginatingAddress(),
 					smsMessages[0].getMessageBody(), smsMessages[0].getTimestampMillis()));
 
 		}
