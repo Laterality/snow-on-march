@@ -1,6 +1,8 @@
 package latera.kr.snowonmarch.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,67 +10,63 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
+import io.realm.OrderedRealmCollection;
+import io.realm.RealmRecyclerViewAdapter;
 import latera.kr.snowonmarch.R;
+import latera.kr.snowonmarch.dbo.MessageDBO;
+import latera.kr.snowonmarch.dbo.PersonDBO;
 import latera.kr.snowonmarch.object.TextMessageObject;
 
 /**
  * Created by Jinwoo Shin on 2018-04-20.
  */
 
-public class MessagesByNumberAdapter extends BaseAdapter {
+public class MessagesByNumberAdapter extends RealmRecyclerViewAdapter<PersonDBO, MessagesByNumberAdapter.ViewHolder> {
 
-    private static final int SIZE = 24;
-    private Context mContext;
-    private TextMessageObject mMessage;
+	private static final String TAG = "MAIN_RECYCLERVIEW";
 
-    public MessagesByNumberAdapter(Context context) {
-        mContext = context;
-        mMessage = new TextMessageObject("Secondary line text Lorem ipsum dapibus, neque id cursus",
-                "John Doe", "012 3456 7890");
+    public MessagesByNumberAdapter(OrderedRealmCollection<PersonDBO> data) {
+    	super(data, true);
+	    Log.d(TAG, "items: " + data.size());
     }
 
+	@Override
+	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    	View itemView = LayoutInflater.from(parent.getContext())
+			    .inflate(R.layout.item_message_by_number, parent, false);
+		return new ViewHolder(itemView);
+	}
 
-    @Override
-    public int getCount() {
-        return this.SIZE;
-    }
+	@Override
+	public void onBindViewHolder(ViewHolder holder, int position) {
+		final PersonDBO item = getItem(position);
+		holder.person = item;
+		holder.tvSender.setText(item.getName());
+		MessageDBO recent = item.getRecentMessage();
+		if (recent != null) {
+			holder.tvMessage.setText(recent.getBody());
+		}
+	}
 
-    @Override
-    public Object getItem(int i) {
-        return mMessage;
-    }
-
-    @Override
+	@Override
     public long getItemId(int i) {
-        return i;
+        return getItem(i).getId();
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder;
 
-        if (view == null) {
-            holder = new ViewHolder();
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            view = inflater.inflate(R.layout.item_message_by_number, null);
-            holder.ivProfile = view.findViewById(R.id.iv_item_messages_by_number_sender_img);
-            holder.tvSender = view.findViewById(R.id.tv_item_message_by_number_sender_name);
-            holder.tvMessage = view.findViewById(R.id.tv_item_message_by_number_sender_excerpt);
-            view.setTag(holder);
-        }
-        else {
-            holder = (ViewHolder)view.getTag();
-        }
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        ImageView ivProfile;
+        TextView tvSender;
+        TextView tvMessage;
+        public PersonDBO person;
 
-        holder.tvSender.setText(mMessage.senderName);
-        holder.tvMessage.setText(mMessage.content);
-
-        return view;
-    }
-
-    private class ViewHolder {
-        public ImageView ivProfile;
-        public TextView tvSender;
-        public TextView tvMessage;
+	    public ViewHolder(View itemView) {
+		    super(itemView);
+		    ivProfile = itemView.findViewById(R.id.iv_item_messages_by_number_sender_img);
+		    tvSender = itemView.findViewById(R.id.tv_item_message_by_number_sender_name);
+		    tvMessage = itemView.findViewById(R.id.tv_item_message_by_number_sender_excerpt);
+	    }
     }
 }
