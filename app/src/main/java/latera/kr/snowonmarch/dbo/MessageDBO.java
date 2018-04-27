@@ -6,19 +6,24 @@ import io.realm.annotations.Index;
 public class MessageDBO extends RealmObject {
 
 	@Index
-	private String mPhoneNumber;
-	private String mBody;
-	private long mDateSent;
+	private String address;
+	private String body;
+	private long dateSent;
+	private PersonDBO sender;
 
 	public MessageDBO() { }
 
 	public MessageDBO(String phoneNumber, String body, long date) {
-		this.mPhoneNumber = phoneNumber;
-		this.mBody = body;
-		this.mDateSent = date;
+		this.address = phoneNumber;
+		this.body = body;
+		this.dateSent = date;
+		this.sender = null;
 	}
 
-	public String getPhoneNumber() { return this.mPhoneNumber; }
-	public String getBody() { return this.mBody; }
-	public long getDate() { return this.mDateSent; }
+	public String getAddress() { return this.address; }
+	public String getBody() { return this.body; }
+	public long getDate() { return this.dateSent; }
+	public PersonDBO getSender() { return sender; }
+
+	public void setSender(PersonDBO sender) { this.sender = sender; }
 }
