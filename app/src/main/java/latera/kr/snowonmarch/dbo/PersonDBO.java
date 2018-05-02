@@ -41,7 +41,13 @@ public class PersonDBO extends RealmObject{
 
 	public void setName(String name) { this.name = name; }
 	public void setAddress(String address) { this.address = address; }
-	public void addMessage(MessageDBO message) { this.messagesSent.add(message); if (message.getDate() > recent) { recent = message.getDate(); } sort(); }
+	public void addMessage(MessageDBO message) {
+		this.messagesSent.add(message);
+		if (message.getDate() > recent) {
+			recent = message.getDate();
+		}
+		sort();
+	}
 	public void addMessages(ListIterator<MessageDBO> messages) {
 		MessageDBO msg;
 		while(messages.hasNext()) {
@@ -54,6 +60,8 @@ public class PersonDBO extends RealmObject{
 	}
 
 	private void sort() {
-		this.messagesSent.sort("dateSent", Sort.ASCENDING);
+		RealmList<MessageDBO> newList = new RealmList<>();
+		newList.addAll(this.messagesSent.sort("dateSent", Sort.ASCENDING));
+		this.messagesSent = newList;
 	}
 }
