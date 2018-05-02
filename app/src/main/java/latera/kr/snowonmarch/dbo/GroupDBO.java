@@ -13,7 +13,7 @@ public class GroupDBO extends RealmObject {
 
 	public GroupDBO() { }
 
-	public GroupDBO(int id, List<PersonDBO> people) {
+	public GroupDBO(int id, RealmList<PersonDBO> people) {
 		this.id = id;
 		this.people = new RealmList<>();
 		this.people.addAll(people);
