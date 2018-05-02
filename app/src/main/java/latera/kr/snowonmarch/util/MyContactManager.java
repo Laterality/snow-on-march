@@ -18,6 +18,8 @@ import latera.kr.snowonmarch.dbo.PersonDBO;
 
 public class MyContactManager extends AsyncTask {
 
+	private static final String TAG = "CONTACT_MANAGER";
+
 	private final Context mContext;
 	private final OnSynchronizationFinishedListener mListener;
 
@@ -76,6 +78,7 @@ public class MyContactManager extends AsyncTask {
 			}
 			// sender 지정
 			msg.setSender(sender);
+			sender.addMessage(msg);
 
 		}
 
