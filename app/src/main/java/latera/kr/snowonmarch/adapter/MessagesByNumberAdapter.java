@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,9 +28,12 @@ public class MessagesByNumberAdapter extends RealmRecyclerViewAdapter<PersonDBO,
 
 	private static final String TAG = "MAIN_RECYCLERVIEW";
 
-    public MessagesByNumberAdapter(OrderedRealmCollection<PersonDBO> data) {
+	private final OnItemClickListener mListener;
+
+    public MessagesByNumberAdapter(OrderedRealmCollection<PersonDBO> data, OnItemClickListener listener) {
     	super(data, true);
 	    Log.d(TAG, "items: " + data.size());
+	    mListener = listener;
     }
 
 	@Override
@@ -48,6 +52,12 @@ public class MessagesByNumberAdapter extends RealmRecyclerViewAdapter<PersonDBO,
 		if (recent != null) {
 			holder.tvMessage.setText(recent.getBody());
 		}
+		holder.itemView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				mListener.onClick(view, item);
+			}
+		});
 	}
 
 	@Override
@@ -60,13 +70,17 @@ public class MessagesByNumberAdapter extends RealmRecyclerViewAdapter<PersonDBO,
         ImageView ivProfile;
         TextView tvSender;
         TextView tvMessage;
-        public PersonDBO person;
+        PersonDBO person;
 
-	    public ViewHolder(View itemView) {
+	    public ViewHolder(final View itemView) {
 		    super(itemView);
 		    ivProfile = itemView.findViewById(R.id.iv_item_messages_by_number_sender_img);
 		    tvSender = itemView.findViewById(R.id.tv_item_message_by_number_sender_name);
 		    tvMessage = itemView.findViewById(R.id.tv_item_message_by_number_sender_excerpt);
 	    }
+    }
+
+    public interface OnItemClickListener {
+    	public void onClick(View v, PersonDBO p);
     }
 }

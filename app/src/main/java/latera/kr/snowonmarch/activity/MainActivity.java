@@ -1,5 +1,6 @@
 package latera.kr.snowonmarch.activity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -75,9 +76,6 @@ public class MainActivity extends AppCompatActivity {
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
-        Log.d(TAG, "messages: " + mRealm.where(MessageDBO.class).findAll().size());
-        Log.d(TAG, "contacts: " + mRealm.where(PersonDBO.class).findAll().size());
-
 		setUpRecyclerView();
     }
 
@@ -92,8 +90,17 @@ public class MainActivity extends AppCompatActivity {
 			    .greaterThan("recent", -1) // 문자 내역이 있는 연락처 filter
 			    .sort("recent", Sort.DESCENDING) // 최근 수신일자 내림차순
 			    .findAll();
-	    MessagesByNumberAdapter adapter = new MessagesByNumberAdapter(people);
+	    MessagesByNumberAdapter adapter = new MessagesByNumberAdapter(people,
+			    new MessagesByNumberAdapter.OnItemClickListener() {
+		    @Override
+		    public void onClick(View v, PersonDBO p) {
+			    Intent i = new Intent(MainActivity.this, MessageLogActivity.class);
+			    i.putExtra(MessageLogActivity.ARG_ADDRESS_SENDER, p.getAddress());
+			    startActivity(i);
+		    }
+	    });
 	    mLvMessage.setAdapter(adapter);
 	    mLvMessage.setLayoutManager(new LinearLayoutManager(this));
+
     }
 }
