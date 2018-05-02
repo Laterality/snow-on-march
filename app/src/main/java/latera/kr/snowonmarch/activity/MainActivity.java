@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.provider.FontsContractCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -25,6 +27,7 @@ import latera.kr.snowonmarch.adapter.MessagesByNumberAdapter;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.MessageDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
+import latera.kr.snowonmarch.fragment.GroupFragment;
 import latera.kr.snowonmarch.util.MyContactManager;
 import latera.kr.snowonmarch.util.MySmsManager;
 
@@ -32,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
 	private static final String TAG = "MAIN_ACTIVITY";
 
+	private FrameLayout flContent;
     private DrawerLayout mDrawerLayout;
     private ImageButton mIbtnMenu;
-    private RecyclerView mLvMessage;
 
 	private ActionBarDrawerToggle mDrawerToggle;
 
@@ -47,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mRealm = Realm.getDefaultInstance();
 
+        flContent = findViewById(R.id.main_fl_content);
         mDrawerLayout = findViewById(R.id.main_dl_drawer);
         mIbtnMenu = findViewById(R.id.ibtn_main_menu);
-        mLvMessage = findViewById(R.id.lv_main_messages);
 
         mIbtnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
-		setUpRecyclerView();
+		setFragment(GroupFragment.SHOW_ALL);
+
     }
 
     @Override
@@ -85,22 +89,11 @@ public class MainActivity extends AppCompatActivity {
 	    mRealm.close();
     }
 
-    private void setUpRecyclerView() {
-	    RealmResults<PersonDBO> people = mRealm.where(PersonDBO.class)
-			    .greaterThan("recent", -1) // 문자 내역이 있는 연락처 filter
-			    .sort("recent", Sort.DESCENDING) // 최근 수신일자 내림차순
-			    .findAll();
-	    MessagesByNumberAdapter adapter = new MessagesByNumberAdapter(people,
-			    new MessagesByNumberAdapter.OnItemClickListener() {
-		    @Override
-		    public void onClick(View v, PersonDBO p) {
-			    Intent i = new Intent(MainActivity.this, MessageLogActivity.class);
-			    i.putExtra(MessageLogActivity.ARG_ADDRESS_SENDER, p.getAddress());
-			    startActivity(i);
-		    }
-	    });
-	    mLvMessage.setAdapter(adapter);
-	    mLvMessage.setLayoutManager(new LinearLayoutManager(this));
-
+    private void setFragment(int groupId) {
+	    GroupFragment frag = GroupFragment.getInstance(groupId);
+	    getSupportFragmentManager()
+			    .beginTransaction()
+			    .add(flContent.getId(), frag)
+			    .commit();
     }
 }

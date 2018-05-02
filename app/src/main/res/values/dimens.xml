@@ -7,6 +7,8 @@
     <dimen name="item_messages_by_number_height">72dp</dimen>
     <dimen name="item_messages_by_number_img_size">40dp</dimen>
 
+    <dimen name="main_drawer_header_height">96dp</dimen>
+
     <dimen name="dimen_1">4dp</dimen>
     <dimen name="dimen_2">8dp</dimen>
     <dimen name="dimen_3">16dp</dimen>
