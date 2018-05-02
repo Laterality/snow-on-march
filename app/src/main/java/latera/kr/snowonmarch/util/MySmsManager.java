@@ -13,6 +13,8 @@ import latera.kr.snowonmarch.dbo.MessageDBO;
 
 public class MySmsManager extends AsyncTask {
 
+	private static final String TAG = "SMS_MANAGER";
+
 	private final Context mContext;
 	private final OnSynchronizationFinishedListener mListener;
 
@@ -26,14 +28,15 @@ public class MySmsManager extends AsyncTask {
 		// public static final String SENT = "content://sms/sent";
 		// public static final String DRAFT = "content://sms/draft";
 		String[] projection = new String[]{
-				Telephony.Sms.ADDRESS, Telephony.Sms.DATE, Telephony.Sms.BODY};
+				Telephony.Sms.ADDRESS, Telephony.Sms.DATE, Telephony.Sms.BODY, Telephony.Sms.TYPE};
 		Uri uri = Telephony.Sms.CONTENT_URI;
 		Cursor cursor = context.getContentResolver().
-				query(uri, projection,
+				query(uri, null,
 						null, null, null);
 		int idxAddress = cursor.getColumnIndex(Telephony.Sms.ADDRESS);
 		int idxDate = cursor.getColumnIndex(Telephony.Sms.DATE);
 		int idxBody = cursor.getColumnIndex(Telephony.Sms.BODY);
+		int idxType = cursor.getColumnIndex(Telephony.Sms.TYPE);
 
 		Realm realm = Realm.getDefaultInstance();
 		realm.beginTransaction();
@@ -41,7 +44,8 @@ public class MySmsManager extends AsyncTask {
 		if (cursor.moveToFirst()) {
 			do {
 				message = new MessageDBO(cursor.getString(idxAddress),
-						cursor.getString(idxBody), cursor.getLong(idxDate));
+						cursor.getString(idxBody), cursor.getLong(idxDate),
+						cursor.getInt(idxType) == Telephony.Sms.MESSAGE_TYPE_SENT);
 
 				realm.copyToRealm(message);
 
