@@ -18,7 +18,6 @@ import io.realm.RealmRecyclerViewAdapter;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.MessageDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
-import latera.kr.snowonmarch.object.TextMessageObject;
 
 /**
  * Created by Jinwoo Shin on 2018-04-20.
