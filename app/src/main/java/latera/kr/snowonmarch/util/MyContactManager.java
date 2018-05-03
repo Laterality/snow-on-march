@@ -13,6 +13,7 @@ import java.util.ListIterator;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
+import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.dbo.MessageDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
 
@@ -44,6 +45,8 @@ public class MyContactManager extends AsyncTask {
 		PersonDBO person;
 		RealmResults<MessageDBO> messagesSent;
 
+		GroupDBO groupHome = realm.copyToRealm(new GroupDBO(1, "홈"));
+
 		// Get max of id value
 		Number maxId = realm.where(PersonDBO.class).max("id");
 		int idNext = maxId == null ? 1 : maxId.intValue() + 1;
@@ -52,7 +55,7 @@ public class MyContactManager extends AsyncTask {
 		do {
 			// Insert person object
 			person = realm.copyToRealm(new PersonDBO(idNext++, cursor.getString(idxName), cursor.getString(idxAddress)));
-
+			groupHome.addPerson(person);
 
 			// Find messages which are sent by the person
 			messagesSent = realm.where(MessageDBO.class).equalTo("address", cursor.getString(idxAddress)).findAll();
@@ -75,6 +78,7 @@ public class MyContactManager extends AsyncTask {
 			if (sender == null) {
 				// sender가 없는 경우, 새로 생성
 				sender = realm.copyToRealm(new PersonDBO(idNext++, msg.getAddress(), msg.getAddress()));
+				groupHome.addPerson(sender);
 			}
 			// sender 지정
 			msg.setSender(sender);

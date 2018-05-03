@@ -80,8 +80,8 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <ListView
-                android:id="@+id/main_drawer_lv_boxes"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/main_drawer_rv_boxes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:choiceMode="singleChoice" />

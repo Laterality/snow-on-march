@@ -23,8 +23,10 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 import io.realm.Sort;
+import latera.kr.snowonmarch.adapter.GroupAdapter;
 import latera.kr.snowonmarch.adapter.MessagesByNumberAdapter;
 import latera.kr.snowonmarch.R;
+import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.dbo.MessageDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
 import latera.kr.snowonmarch.fragment.GroupFragment;
@@ -38,10 +40,12 @@ public class MainActivity extends AppCompatActivity {
 	private FrameLayout flContent;
     private DrawerLayout mDrawerLayout;
     private ImageButton mIbtnMenu;
+    private RecyclerView rvGroups;
 
 	private ActionBarDrawerToggle mDrawerToggle;
 
 	private Realm mRealm;
+	private int currentGroupId;
 
 
     @Override
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         flContent = findViewById(R.id.main_fl_content);
         mDrawerLayout = findViewById(R.id.main_dl_drawer);
         mIbtnMenu = findViewById(R.id.ibtn_main_menu);
+        rvGroups = findViewById(R.id.main_drawer_rv_boxes);
 
         mIbtnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
-		setFragment(GroupFragment.SHOW_ALL);
+		setFragment(1);
+		setUpGroup();
 
     }
 
@@ -90,10 +96,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFragment(int groupId) {
+    	currentGroupId = groupId;
 	    GroupFragment frag = GroupFragment.getInstance(groupId);
 	    getSupportFragmentManager()
 			    .beginTransaction()
 			    .add(flContent.getId(), frag)
 			    .commit();
+    }
+
+    private void setUpGroup() {
+		RealmResults<GroupDBO> groups = mRealm.where(GroupDBO.class)
+				.findAll();
+	    GroupAdapter adapter = new GroupAdapter(groups, new GroupAdapter.OnItemClickListener() {
+		    @Override
+		    public void onItemClick(GroupDBO group) {
+			    if (group.getId() != currentGroupId) {
+				    setFragment(group.getId());
+			    }
+			    mDrawerLayout.closeDrawer(Gravity.START);
+		    }
+	    });
+	    rvGroups.setAdapter(adapter);
+	    rvGroups.setLayoutManager(new LinearLayoutManager(this));
     }
 }
