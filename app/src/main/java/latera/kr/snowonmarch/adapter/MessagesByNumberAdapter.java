@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import io.realm.OrderedRealmCollection;
 import io.realm.RealmRecyclerViewAdapter;
+import io.realm.Sort;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.MessageDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
@@ -25,7 +26,7 @@ public class MessagesByNumberAdapter extends RealmRecyclerViewAdapter<PersonDBO,
 	private final OnItemClickListener mListener;
 
     public MessagesByNumberAdapter(OrderedRealmCollection<PersonDBO> data, OnItemClickListener listener) {
-    	super(data, true);
+    	super(data.sort("recent", Sort.DESCENDING), true);
 	    Log.d(TAG, "items: " + data.size());
 	    mListener = listener;
     }
