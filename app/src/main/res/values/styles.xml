@@ -19,7 +19,6 @@
          <item name="android:paddingLeft">@dimen/dimen_1</item>
          <item name="android:textSize">@dimen/text_large</item>
          <item name="android:textColor">@android:color/white</item>
-
      </style>
 
 </resources>
