@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <declare-styleable name="CircleButtonView">
+        <attr name="color" format="color" />
+    </declare-styleable>
+
+</resources>
