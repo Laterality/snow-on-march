@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+     <style name="Toolbar" parent="Base.V7.Widget.AppCompat.Toolbar" >
+         <item name="android:layout_height">?android:attr/actionBarSize</item>
+         <item name="android:layout_width">match_parent</item>
+         <item name="android:background">@color/colorPrimary</item>
+         <item name="android:elevation">3dp</item>
+     </style>
+
+     <style name="ToolbarTitle" parent="TextAppearance.AppCompat">
+         <item name="android:paddingLeft">@dimen/dimen_1</item>
+         <item name="android:textSize">@dimen/text_large</item>
+         <item name="android:textColor">@android:color/white</item>
+
+     </style>
+
 </resources>
