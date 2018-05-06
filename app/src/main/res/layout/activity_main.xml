@@ -71,7 +71,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <Button
-                    android:id="@+id/main_drawer_btn_edit"
+                    android:id="@+id/btn_main_drawer_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="편집"
@@ -83,8 +83,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/main_drawer_rv_boxes"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:choiceMode="singleChoice" />
+                android:layout_height="match_parent" />
 
 
         </LinearLayout>
