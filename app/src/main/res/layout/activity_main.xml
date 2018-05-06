@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_message_box"
+                    android:text="@string/text_group"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/text_large"
                     app:layout_constraintLeft_toLeftOf="parent"

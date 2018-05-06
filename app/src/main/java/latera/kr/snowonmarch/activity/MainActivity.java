@@ -1,37 +1,24 @@
 package latera.kr.snowonmarch.activity;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.ContactsContract;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.provider.FontsContractCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
-import io.realm.Sort;
 import latera.kr.snowonmarch.adapter.GroupAdapter;
-import latera.kr.snowonmarch.adapter.MessagesByNumberAdapter;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.GroupDBO;
-import latera.kr.snowonmarch.dbo.MessageDBO;
-import latera.kr.snowonmarch.dbo.PersonDBO;
 import latera.kr.snowonmarch.fragment.GroupFragment;
-import latera.kr.snowonmarch.util.MyContactManager;
-import latera.kr.snowonmarch.util.MySmsManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ImageButton mIbtnMenu;
     private RecyclerView rvGroups;
+    private Button btnEditGroup;
 
 	private ActionBarDrawerToggle mDrawerToggle;
 
@@ -58,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = findViewById(R.id.main_dl_drawer);
         mIbtnMenu = findViewById(R.id.ibtn_main_menu);
         rvGroups = findViewById(R.id.main_drawer_rv_boxes);
+        btnEditGroup = findViewById(R.id.btn_main_drawer_edit);
 
         mIbtnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+
+        btnEditGroup.setOnClickListener(new View.OnClickListener() {
+	        @Override
+	        public void onClick(View view) {
+		        startActivity(new Intent(MainActivity.this, GroupEditActivity.class));
+	        }
+        });
 
 		setFragment(1);
 		setUpGroup();
