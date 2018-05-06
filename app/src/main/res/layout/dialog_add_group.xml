@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dimen_3"
+    android:paddingRight="@dimen/dimen_3">
+
+    <EditText
+        android:id="@+id/et_add_group_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:maxLength="32"
+        android:inputType="text"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_add_group_bg_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:maxLength="32"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/et_add_group_name"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/et_add_group_bg_color">
+
+        <latera.kr.snowonmarch.view.CircleButtonView
+            android:layout_width="@dimen/dimen_5"
+            android:layout_height="@dimen/dimen_5"
+            app:color="#ABABAB"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <RadioButton
+            android:layout_width="@dimen/dimen_5"
+            android:layout_height="@dimen/dimen_5"
+            android:buttonTint="@android:color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">3월의 눈</string>
 
-    <string name="text_message_box">메시지함</string>
+    <string name="text_group">그룹</string>
     <string name="text_edit">편집</string>
+    <string name="text_edit_group">그룹 편집</string>
+    <string name="text_add_group">그룹 추가</string>
+    <string name="text_ok">확인</string>
+    <string name="text_cancel">취소</string>
+
+    <string name="text_temp">lorem ipsum dolor sit amet</string>
 </resources>
