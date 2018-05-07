@@ -51,7 +51,7 @@ public class EditGroupAdapter extends RealmRecyclerViewAdapter<GroupDBO, EditGro
 
 		public ViewHolder(View itemView) {
 			super(itemView);
-			tvGroupName = itemView.findViewById(R.id.tv_item_group_list_group_name);
+			tvGroupName = itemView.findViewById(R.id.tv_edit_group_list_group_title);
 		}
 	}
 
