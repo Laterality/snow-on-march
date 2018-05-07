@@ -10,4 +10,11 @@
 
     <color name="colorTextPrimary">#000000</color>
     <color name="colorTextSecondary">#8a000000</color>
+
+    <color name="color_bg_1">#bcaaa4</color>
+    <color name="color_bg_2">#f48fb1</color>
+    <color name="color_bg_3">#ce93d8</color>
+    <color name="color_bg_4">#90caf9</color>
+    <color name="color_bg_5">#80deea</color>
+    <color name="color_bg_6">#ffcc80</color>
 </resources>
