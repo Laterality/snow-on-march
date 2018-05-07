@@ -19,8 +19,13 @@ public class CircleButtonView extends View {
 	private Paint mPaint;
 	private RectF mArea;
 
-	public CircleButtonView(Context context, AttributeSet attrs) {
+	public CircleButtonView(Context context) {
 		super(context);
+		init();
+	}
+
+	public CircleButtonView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 		mArea = null;
 		TypedArray a = context.getTheme().obtainStyledAttributes(
 				attrs,
@@ -36,6 +41,15 @@ public class CircleButtonView extends View {
 		}
 
 		init();
+	}
+
+	public CircleButtonView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init();
+	}
+
+	public CircleButtonView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	private void init() {
