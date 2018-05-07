@@ -10,39 +10,141 @@
         android:id="@+id/et_add_group_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:maxLength="32"
         android:inputType="text"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <EditText
-        android:id="@+id/et_add_group_bg_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
         android:maxLength="32"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/et_add_group_name"/>
+        android:maxLines="1"
+        android:hint="@string/text_group_name"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/et_add_group_bg_color">
+        android:paddingTop="@dimen/dimen_2"
+        app:layout_constraintTop_toBottomOf="@id/et_add_group_name">
 
-        <latera.kr.snowonmarch.view.CircleButtonView
-            android:layout_width="@dimen/dimen_5"
-            android:layout_height="@dimen/dimen_5"
-            app:color="#ABABAB"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent">
 
-        <RadioButton
-            android:layout_width="@dimen/dimen_5"
-            android:layout_height="@dimen/dimen_5"
-            android:buttonTint="@android:color/white"
+            <latera.kr.snowonmarch.view.CircleButtonView
+                android:id="@+id/cbv_dialog_add_group_bg_color_1"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1"
+                app:color="@color/color_bg_1" />
+
+            <latera.kr.snowonmarch.view.CircleButtonView
+                android:id="@+id/cbv_dialog_add_group_bg_color_2"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1"
+                app:color="@color/color_bg_2" />
+
+
+            <latera.kr.snowonmarch.view.CircleButtonView
+                android:id="@+id/cbv_dialog_add_group_bg_color_3"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1"
+                app:color="@color/color_bg_3" />
+
+            <latera.kr.snowonmarch.view.CircleButtonView
+                android:id="@+id/cbv_dialog_add_group_bg_color_4"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1"
+                app:color="@color/color_bg_4" />
+
+            <latera.kr.snowonmarch.view.CircleButtonView
+                android:id="@+id/cbv_dialog_add_group_bg_color_5"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1"
+                app:color="@color/color_bg_5" />
+
+            <latera.kr.snowonmarch.view.CircleButtonView
+                android:id="@+id/cbv_dialog_add_group_bg_color_6"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1"
+                app:color="@color/color_bg_6" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rg_dialog_add_group_colors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent">
+
+            <RadioButton
+                android:id="@+id/rb_dialog_add_group_bg_color_1"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:buttonTint="@android:color/white"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1"
+                android:checked="true"/>
+
+
+            <RadioButton
+                android:id="@+id/rb_dialog_add_group_bg_color_2"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:buttonTint="@android:color/white"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1" />
+
+
+            <RadioButton
+                android:id="@+id/rb_dialog_add_group_bg_color_3"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:buttonTint="@android:color/white"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1" />
+
+
+            <RadioButton
+                android:id="@+id/rb_dialog_add_group_bg_color_4"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:buttonTint="@android:color/white"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1" />
+
+            <RadioButton
+                android:id="@+id/rb_dialog_add_group_bg_color_5"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:buttonTint="@android:color/white"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1" />
+
+            <RadioButton
+                android:id="@+id/rb_dialog_add_group_bg_color_6"
+                android:layout_width="@dimen/dimen_5"
+                android:layout_height="@dimen/dimen_5"
+                android:buttonTint="@android:color/white"
+                android:layout_marginLeft="@dimen/dimen_1"
+                android:layout_marginRight="@dimen/dimen_1" />
+
+        </RadioGroup>
 
     </android.support.constraint.ConstraintLayout>
+
 
 </android.support.constraint.ConstraintLayout>
