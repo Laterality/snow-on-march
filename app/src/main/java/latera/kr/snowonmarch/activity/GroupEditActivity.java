@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -51,6 +52,7 @@ public class GroupEditActivity extends AppCompatActivity implements AddGroupDial
 		RealmResults<GroupDBO> groups = mRealm.where(GroupDBO.class)
 				.notEqualTo("id", 1)
 				.findAll();
+		Log.d(TAG, "found to edit: " + groups.size());
 		EditGroupAdapter adapter = new EditGroupAdapter(groups, new EditGroupAdapter.OnItemClickListener() {
 			@Override
 			public void onClick(GroupDBO group) {
@@ -73,7 +75,20 @@ public class GroupEditActivity extends AppCompatActivity implements AddGroupDial
 	}
 
 	@Override
-	public void onOk(String name, String color) {
+	public void onOk(String name, int color) {
 		Log.d(TAG, "We should group as named " + name + " with color " + color);
+		try {
+			Number maxId = mRealm.where(GroupDBO.class).max("id");
+			int id = 1;
+			if (maxId != null) { id = maxId.intValue() + 1; }
+
+			mRealm.beginTransaction();
+			mRealm.copyToRealm(new GroupDBO(id, name, color));
+			mRealm.commitTransaction();
+			Toast.makeText(this, R.string.text_group_created, Toast.LENGTH_LONG).show();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
