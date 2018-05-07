@@ -11,6 +11,7 @@ import io.realm.OrderedRealmCollection;
 import io.realm.RealmRecyclerViewAdapter;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.GroupDBO;
+import latera.kr.snowonmarch.view.CircleButtonView;
 
 public class GroupAdapter extends RealmRecyclerViewAdapter<GroupDBO, GroupAdapter.ViewHolder> {
 
@@ -31,8 +32,9 @@ public class GroupAdapter extends RealmRecyclerViewAdapter<GroupDBO, GroupAdapte
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
 		final GroupDBO group = getItem(position);
-		holder.group = group;
+
 		holder.tvGroupName.setText(group.getName());
+		holder.cbvBg.setColor(group.getBackground());
 		holder.itemView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -44,12 +46,13 @@ public class GroupAdapter extends RealmRecyclerViewAdapter<GroupDBO, GroupAdapte
 	}
 
 	public class ViewHolder extends RecyclerView.ViewHolder {
-		GroupDBO group;
+		CircleButtonView cbvBg;
 		TextView tvGroupName;
 
 		public ViewHolder(View itemView) {
 			super(itemView);
 			tvGroupName = itemView.findViewById(R.id.tv_item_group_list_group_name);
+			cbvBg = itemView.findViewById(R.id.cbv_item_group_list_color);
 		}
 	}
 
