@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
+        android:name=".util.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,6 +25,8 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.MessageLogActivity" />
         <activity android:name=".activity.GroupEditActivity" />
+        <activity android:name=".activity.GroupMemberEditActivity" />
+        <activity android:name=".activity.PersonFindActivity" />
     </application>
 
 </manifest>
