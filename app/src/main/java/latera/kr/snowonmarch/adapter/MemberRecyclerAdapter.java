@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import io.realm.OrderedRealmCollection;
 import io.realm.RealmRecyclerViewAdapter;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.GroupDBO;
@@ -18,6 +19,11 @@ public class MemberRecyclerAdapter extends RealmRecyclerViewAdapter<PersonDBO, M
 
 	public MemberRecyclerAdapter(@Nullable GroupDBO data, OnItemClickListener listener) {
 		super(data.getPeople(), true);
+		this.mListener = listener;
+	}
+
+	public MemberRecyclerAdapter(@Nullable OrderedRealmCollection<PersonDBO> data, OnItemClickListener listener) {
+		super(data, true);
 		this.mListener = listener;
 	}
 
