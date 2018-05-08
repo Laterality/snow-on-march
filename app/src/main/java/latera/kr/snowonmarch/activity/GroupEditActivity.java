@@ -1,5 +1,6 @@
 package latera.kr.snowonmarch.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +57,9 @@ public class GroupEditActivity extends AppCompatActivity implements AddGroupDial
 		EditGroupRecyclerAdapter adapter = new EditGroupRecyclerAdapter(groups, new EditGroupRecyclerAdapter.OnItemClickListener() {
 			@Override
 			public void onClick(GroupDBO group) {
-				Log.d(TAG, "Clicked group: " + group.getId());
+				Intent i = new Intent(GroupEditActivity.this, GroupMemberEditActivity.class);
+				i.putExtra(GroupMemberEditActivity.ARG_GROUP_ID, group.getId());
+				startActivity(i);
 			}
 		});
 		rvGroups.setAdapter(adapter);
