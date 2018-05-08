@@ -15,7 +15,7 @@ import android.widget.ImageButton;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import latera.kr.snowonmarch.adapter.GroupAdapter;
+import latera.kr.snowonmarch.adapter.GroupRecyclerAdapter;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.fragment.GroupFragment;
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     private void setUpGroup() {
 		RealmResults<GroupDBO> groups = mRealm.where(GroupDBO.class)
 				.findAll();
-	    GroupAdapter adapter = new GroupAdapter(groups, new GroupAdapter.OnItemClickListener() {
+	    GroupRecyclerAdapter adapter = new GroupRecyclerAdapter(groups, new GroupRecyclerAdapter.OnItemClickListener() {
 		    @Override
 		    public void onItemClick(GroupDBO group) {
 			    if (group.getId() != currentGroupId) {
