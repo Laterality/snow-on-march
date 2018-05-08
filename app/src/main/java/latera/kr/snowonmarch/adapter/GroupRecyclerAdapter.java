@@ -13,11 +13,11 @@ import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.view.CircleButtonView;
 
-public class GroupAdapter extends RealmRecyclerViewAdapter<GroupDBO, GroupAdapter.ViewHolder> {
+public class GroupRecyclerAdapter extends RealmRecyclerViewAdapter<GroupDBO, GroupRecyclerAdapter.ViewHolder> {
 
 	private final OnItemClickListener mListener;
 
-	public GroupAdapter(@Nullable OrderedRealmCollection<GroupDBO> data, OnItemClickListener listener) {
+	public GroupRecyclerAdapter(@Nullable OrderedRealmCollection<GroupDBO> data, OnItemClickListener listener) {
 		super(data, true);
 		mListener = listener;
 	}
