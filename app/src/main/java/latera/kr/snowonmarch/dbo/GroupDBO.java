@@ -42,4 +42,6 @@ public class GroupDBO extends RealmObject {
 	public int getBackground() { return this.background; }
 	public boolean isImmortal() { return this.immortal; }
 	public void addPerson(PersonDBO p) { this.people.add(p); }
+	public void removePerson(PersonDBO p) { this.people.remove(p); }
+	public boolean isIn(PersonDBO p) { return this.people.indexOf(p) > -1; }
 }
