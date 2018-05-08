@@ -10,12 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import java.security.acl.Group;
-
 import io.realm.Realm;
-import io.realm.RealmResults;
 import latera.kr.snowonmarch.R;
-import latera.kr.snowonmarch.adapter.EditMemberAdapter;
+import latera.kr.snowonmarch.adapter.MemberRecyclerAdapter;
 import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
 
@@ -82,7 +79,7 @@ public class GroupMemberEditActivity extends AppCompatActivity {
 				.equalTo("id", groupId)
 				.findFirst();
 
-		EditMemberAdapter adapter = new EditMemberAdapter(group, new EditMemberAdapter.OnItemClickListener() {
+		MemberRecyclerAdapter adapter = new MemberRecyclerAdapter(group, new MemberRecyclerAdapter.OnItemClickListener() {
 			@Override
 			public void onClick(PersonDBO person) {
 				Log.d(TAG, "clicked person: " + person.getName());

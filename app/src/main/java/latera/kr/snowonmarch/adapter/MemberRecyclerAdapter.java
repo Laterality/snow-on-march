@@ -12,11 +12,11 @@ import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
 
-public class EditMemberAdapter extends RealmRecyclerViewAdapter<PersonDBO, EditMemberAdapter.ViewHolder> {
+public class MemberRecyclerAdapter extends RealmRecyclerViewAdapter<PersonDBO, MemberRecyclerAdapter.ViewHolder> {
 
 	private final OnItemClickListener mListener;
 
-	public EditMemberAdapter(@Nullable GroupDBO data, OnItemClickListener listener) {
+	public MemberRecyclerAdapter(@Nullable GroupDBO data, OnItemClickListener listener) {
 		super(data.getPeople(), true);
 		this.mListener = listener;
 	}

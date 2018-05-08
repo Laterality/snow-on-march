@@ -15,7 +15,7 @@ import io.realm.Realm;
 import io.realm.Sort;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.activity.MessageLogActivity;
-import latera.kr.snowonmarch.adapter.MessagesByNumberAdapter;
+import latera.kr.snowonmarch.adapter.MessagesByNumberRecyclerAdapter;
 import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
 
@@ -80,8 +80,8 @@ public class GroupFragment extends Fragment {
 			}
 		}
 
-		MessagesByNumberAdapter adapter = new MessagesByNumberAdapter(people,
-				new MessagesByNumberAdapter.OnItemClickListener() {
+		MessagesByNumberRecyclerAdapter adapter = new MessagesByNumberRecyclerAdapter(people,
+				new MessagesByNumberRecyclerAdapter.OnItemClickListener() {
 					@Override
 					public void onClick(View v, PersonDBO p) {
 						Intent i = new Intent(getActivity(), MessageLogActivity.class);

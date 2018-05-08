@@ -19,13 +19,13 @@ import latera.kr.snowonmarch.dbo.PersonDBO;
  * Created by Jinwoo Shin on 2018-04-20.
  */
 
-public class MessagesByNumberAdapter extends RealmRecyclerViewAdapter<PersonDBO, MessagesByNumberAdapter.ViewHolder> {
+public class MessagesByNumberRecyclerAdapter extends RealmRecyclerViewAdapter<PersonDBO, MessagesByNumberRecyclerAdapter.ViewHolder> {
 
 	private static final String TAG = "MAIN_RECYCLERVIEW";
 
 	private final OnItemClickListener mListener;
 
-    public MessagesByNumberAdapter(OrderedRealmCollection<PersonDBO> data, OnItemClickListener listener) {
+    public MessagesByNumberRecyclerAdapter(OrderedRealmCollection<PersonDBO> data, OnItemClickListener listener) {
     	super(data.sort("recent", Sort.DESCENDING), true);
 	    Log.d(TAG, "items: " + data.size());
 	    mListener = listener;

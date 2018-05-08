@@ -12,7 +12,7 @@ import android.widget.Toast;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import latera.kr.snowonmarch.R;
-import latera.kr.snowonmarch.adapter.EditGroupAdapter;
+import latera.kr.snowonmarch.adapter.EditGroupRecyclerAdapter;
 import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.dialog.AddGroupDialog;
 
@@ -53,7 +53,7 @@ public class GroupEditActivity extends AppCompatActivity implements AddGroupDial
 				.notEqualTo("id", 1)
 				.findAll();
 		Log.d(TAG, "found to edit: " + groups.size());
-		EditGroupAdapter adapter = new EditGroupAdapter(groups, new EditGroupAdapter.OnItemClickListener() {
+		EditGroupRecyclerAdapter adapter = new EditGroupRecyclerAdapter(groups, new EditGroupRecyclerAdapter.OnItemClickListener() {
 			@Override
 			public void onClick(GroupDBO group) {
 				Log.d(TAG, "Clicked group: " + group.getId());

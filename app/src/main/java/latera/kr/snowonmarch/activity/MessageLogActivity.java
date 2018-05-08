@@ -1,7 +1,6 @@
 package latera.kr.snowonmarch.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +10,8 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import latera.kr.snowonmarch.R;
-import latera.kr.snowonmarch.adapter.MessageLogAdapter;
+import latera.kr.snowonmarch.adapter.MessageLogRecyclerAdapter;
 import latera.kr.snowonmarch.dbo.MessageDBO;
-import latera.kr.snowonmarch.dbo.PersonDBO;
 
 public class MessageLogActivity extends AppCompatActivity {
 	public static final String ARG_ADDRESS_SENDER = "address_sender";
@@ -49,7 +47,7 @@ public class MessageLogActivity extends AppCompatActivity {
 				.sort("dateSent", Sort.ASCENDING)
 				.findAll();
 
-		MessageLogAdapter adapter = new MessageLogAdapter(result);
+		MessageLogRecyclerAdapter adapter = new MessageLogRecyclerAdapter(result);
 		rvMessage.setAdapter(adapter);
 		rvMessage.setLayoutManager(new LinearLayoutManager(this));
 	}

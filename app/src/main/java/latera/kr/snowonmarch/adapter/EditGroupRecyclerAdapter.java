@@ -12,11 +12,11 @@ import io.realm.RealmRecyclerViewAdapter;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.GroupDBO;
 
-public class EditGroupAdapter extends RealmRecyclerViewAdapter<GroupDBO, EditGroupAdapter.ViewHolder> {
+public class EditGroupRecyclerAdapter extends RealmRecyclerViewAdapter<GroupDBO, EditGroupRecyclerAdapter.ViewHolder> {
 
 	private final OnItemClickListener mListener;
 
-	public EditGroupAdapter(@Nullable OrderedRealmCollection<GroupDBO> data, OnItemClickListener listener) {
+	public EditGroupRecyclerAdapter(@Nullable OrderedRealmCollection<GroupDBO> data, OnItemClickListener listener) {
 		super(data, true);
 		this.mListener = listener;
 	}
