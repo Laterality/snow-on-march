@@ -27,7 +27,6 @@ public class MessagesByNumberRecyclerAdapter extends RealmRecyclerViewAdapter<Pe
 
     public MessagesByNumberRecyclerAdapter(OrderedRealmCollection<PersonDBO> data, OnItemClickListener listener) {
     	super(data.sort("recent", Sort.DESCENDING), true);
-	    Log.d(TAG, "items: " + data.size());
 	    mListener = listener;
     }
 
