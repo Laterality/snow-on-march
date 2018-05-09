@@ -20,6 +20,7 @@ public class MessageLogActivity extends AppCompatActivity {
 
 	private String mAddress;
 	private Realm mRealm;
+	private MessageLogRecyclerAdapter mAdapter;
 
 
 	@Override
@@ -34,6 +35,7 @@ public class MessageLogActivity extends AppCompatActivity {
 		mAddress = getIntent().getStringExtra(ARG_ADDRESS_SENDER);
 
 		setupRv();
+		rvMessage.scrollToPosition(mAdapter.getItemCount() - 1);
 	}
 
 	@Override
@@ -47,8 +49,8 @@ public class MessageLogActivity extends AppCompatActivity {
 				.sort("dateSent", Sort.ASCENDING)
 				.findAll();
 
-		MessageLogRecyclerAdapter adapter = new MessageLogRecyclerAdapter(result);
-		rvMessage.setAdapter(adapter);
+		mAdapter = new MessageLogRecyclerAdapter(result);
+		rvMessage.setAdapter(mAdapter);
 		rvMessage.setLayoutManager(new LinearLayoutManager(this));
 	}
 }
