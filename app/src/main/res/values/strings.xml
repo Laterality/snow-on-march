@@ -8,6 +8,7 @@
     <string name="text_group_name">그룹 이름</string>
     <string name="text_edit_member">구성원 편집</string>
     <string name="text_search_contact">연락처 검색</string>
+    <string name="text_send_message">메시지 보내기</string>
     <string name="text_ok">확인</string>
     <string name="text_cancel">취소</string>
 
