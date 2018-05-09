@@ -38,12 +38,6 @@ public class GroupFragment extends Fragment {
 	}
 
 	@Override
-	public void onStop() {
-		super.onStop();
-		mRealm.close();
-	}
-
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 
@@ -57,6 +51,14 @@ public class GroupFragment extends Fragment {
 
 		setUpRecyclerView();
 		return v;
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		if (!mRealm.isClosed()) {
+			mRealm.close();
+		}
 	}
 
 	private void setUpRecyclerView() {
