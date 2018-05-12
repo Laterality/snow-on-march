@@ -20,6 +20,7 @@ public class SmsReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, @NonNull Intent intent)
 	{
+		Log.d(TAG, "action: " + intent.getAction());
 		if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED"))
 		{
 			Log.d(TAG, "SMS Received");
@@ -43,8 +44,8 @@ public class SmsReceiver extends BroadcastReceiver {
 			Log.d(TAG, "Received Time: " + new DateTime(smsMessages[0].getTimestampMillis()).toString());
 			Log.d(TAG, "From: " + smsMessages[0].getDisplayOriginatingAddress());
 			Log.d(TAG, "Content: " + smsMessages[0].getMessageBody());
-			MySmsManager.onReceiveSms(new MessageDBO(smsMessages[0].getDisplayOriginatingAddress(),
-					smsMessages[0].getMessageBody(), smsMessages[0].getTimestampMillis()));
+			MySmsManager.onReceiveSms(smsMessages[0].getDisplayOriginatingAddress(),
+					smsMessages[0].getMessageBody(), smsMessages[0].getTimestampMillis());
 
 		}
 	}

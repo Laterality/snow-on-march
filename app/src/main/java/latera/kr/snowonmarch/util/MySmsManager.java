@@ -10,6 +10,7 @@ import android.util.Log;
 
 import io.realm.Realm;
 import latera.kr.snowonmarch.dbo.MessageDBO;
+import latera.kr.snowonmarch.dbo.PersonDBO;
 
 public class MySmsManager extends AsyncTask {
 
@@ -57,11 +58,17 @@ public class MySmsManager extends AsyncTask {
 		realm.close();
 	}
 
-	public static void onReceiveSms(MessageDBO msg) {
+	public static void onReceiveSms(String address, String body, long date) {
 		Realm realm = Realm.getDefaultInstance();
 
+		PersonDBO sender = realm.where(PersonDBO.class)
+				.equalTo("address", address).findFirst();
 		realm.beginTransaction();
-		realm.copyToRealm(msg);
+		MessageDBO msg = realm.copyToRealm(new MessageDBO(address, body, date));
+		if  (sender != null) {
+			msg.setSender(sender);
+			sender.addMessage(msg);
+		}
 		realm.commitTransaction();
 	}
 
