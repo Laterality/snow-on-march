@@ -6,10 +6,24 @@
     android:padding="@dimen/dimen_3">
 
     <TextView
-        android:id="@+id/tv_item_message_log_text"
-        android:layout_width="match_parent"
+        android:id="@+id/tv_item_message_log_text_sent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginLeft="@dimen/dimen_5"
+        android:padding="@dimen/dimen_2"
         android:text="lorem ipsum dolor sit amet"
-        android:textAlignment="viewEnd"/>
+        android:background="@drawable/message_box"/>
+
+    <TextView
+        android:id="@+id/tv_item_message_log_text_received"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginRight="@dimen/dimen_5"
+        android:padding="@dimen/dimen_2"
+        android:text="lorem ipsum dolor sit amet"
+        android:background="@drawable/message_box"
+        android:visibility="gone"/>
 
 </LinearLayout>
