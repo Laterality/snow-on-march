@@ -3,11 +3,13 @@ package latera.kr.snowonmarch.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -54,12 +56,25 @@ public class PersonFindActivity extends AppCompatActivity {
 			@Override
 			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 				// TODO: update here!
+				if (charSequence.length() > 0) {
+					ibtnClear.setVisibility(View.VISIBLE);
+				}
+				else {
+					ibtnClear.setVisibility(View.GONE);
+				}
 				update();
 			}
 
 			@Override
 			public void afterTextChanged(Editable editable) {
 
+			}
+		});
+
+		ibtnClear.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				etInput.setText("");
 			}
 		});
 
@@ -78,8 +93,12 @@ public class PersonFindActivity extends AppCompatActivity {
 				finish();
 			}
 		});
+		LinearLayoutManager lm = new LinearLayoutManager(this);
 		rvResults.setAdapter(mAdapter);
-		rvResults.setLayoutManager(new LinearLayoutManager(this));
+		rvResults.setLayoutManager(lm);
+		DividerItemDecoration did = new DividerItemDecoration(rvResults.getContext(),
+				lm.getOrientation());
+		rvResults.addItemDecoration(did);
 	}
 
 	private void update() {
