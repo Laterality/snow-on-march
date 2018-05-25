@@ -14,6 +14,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.adapter.EditGroupRecyclerAdapter;
+import latera.kr.snowonmarch.adapter.GroupRecyclerAdapter;
 import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.dialog.AddGroupDialog;
 
@@ -22,10 +23,16 @@ public class GroupEditActivity extends AppCompatActivity implements AddGroupDial
 	private static final String TAG = "GROUP_EDIT_ACTIVITY";
 	private static final String TAG_DIALOG_FRAGMENT_ADD_GROUP = "ADD_GROUP_DIALOG_FRAGMENT";
 
+	public static int REQUEST_SELECT_GROUP = 1;
+	public static int RESULT_GROUP_SELECTED = 10;
+	public static String ACTION_SELECT_GROUP = "REQUEST_SELECT";
+	public static String RESULT_SELECTED_GROUP_ID = "SELECTED_GROUP_ID";
+
 	private RecyclerView rvGroups;
 	private FloatingActionButton fabAddGroup;
 
 	private Realm mRealm;
+	private boolean isSelectMode;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,13 @@ public class GroupEditActivity extends AppCompatActivity implements AddGroupDial
 			}
 		});
 
+		String action = getIntent().getAction();
+
+		if (action != null && action.equals(ACTION_SELECT_GROUP)) {
+			isSelectMode = true;
+		}
+		else { isSelectMode = false; }
+
 		setUpRecyclerview();
 	}
 
@@ -53,12 +67,20 @@ public class GroupEditActivity extends AppCompatActivity implements AddGroupDial
 		RealmResults<GroupDBO> groups = mRealm.where(GroupDBO.class)
 				.notEqualTo("id", 1)
 				.findAll();
-		EditGroupRecyclerAdapter adapter = new EditGroupRecyclerAdapter(groups, new EditGroupRecyclerAdapter.OnItemClickListener() {
+		GroupRecyclerAdapter adapter = new GroupRecyclerAdapter(groups, new GroupRecyclerAdapter.OnItemClickListener() {
 			@Override
-			public void onClick(GroupDBO group) {
-				Intent i = new Intent(GroupEditActivity.this, GroupMemberEditActivity.class);
-				i.putExtra(GroupMemberEditActivity.ARG_GROUP_ID, group.getId());
-				startActivity(i);
+			public void onItemClick(GroupDBO group) {
+				if (isSelectMode) {
+					Intent i = new Intent();
+					i.putExtra(RESULT_SELECTED_GROUP_ID, group.getId());
+					setResult(RESULT_GROUP_SELECTED, i);
+					finish();
+				}
+				else {
+					Intent i = new Intent(GroupEditActivity.this, GroupMemberEditActivity.class);
+					i.putExtra(GroupMemberEditActivity.ARG_GROUP_ID, group.getId());
+					startActivity(i);
+				}
 			}
 		});
 		rvGroups.setAdapter(adapter);

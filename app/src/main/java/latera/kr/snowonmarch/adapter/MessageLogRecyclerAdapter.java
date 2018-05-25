@@ -1,6 +1,7 @@
 package latera.kr.snowonmarch.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,24 +27,29 @@ public class MessageLogRecyclerAdapter extends RealmRecyclerViewAdapter<MessageD
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
 		final MessageDBO msg = getItem(position);
-		holder.tvText.setText(msg.getBody());
 
 		if (msg.isIsent()) {
-			holder.tvText.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_END);
+			holder.tvTextSent.setText(msg.getBody());
+			holder.tvTextSent.setVisibility(View.VISIBLE);
+			holder.tvTextReceived.setVisibility(View.GONE);
 		}
 		else {
-			holder.tvText.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+			holder.tvTextReceived.setText(msg.getBody());
+			holder.tvTextReceived.setVisibility(View.VISIBLE);
+			holder.tvTextSent.setVisibility(View.GONE);
 		}
 	}
 
 	public class ViewHolder extends RecyclerView.ViewHolder {
 
-		TextView tvText;
+		TextView tvTextSent;
+		TextView tvTextReceived;
 
 		public ViewHolder(View itemView) {
 			super(itemView);
 
-			tvText = itemView.findViewById(R.id.tv_item_message_log_text);
+			tvTextSent = itemView.findViewById(R.id.tv_item_message_log_text_sent);
+			tvTextReceived = itemView.findViewById(R.id.tv_item_message_log_text_received);
 		}
 	}
 }
