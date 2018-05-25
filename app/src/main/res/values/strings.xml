@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">3월의 눈</string>
+    <string name="app_name">SOM</string>
 
     <string name="text_group">그룹</string>
     <string name="text_edit">편집</string>
@@ -11,9 +11,12 @@
     <string name="text_send_message">메시지 보내기</string>
     <string name="text_ok">확인</string>
     <string name="text_cancel">취소</string>
+    <string name="text_add_to_group">그룹에 추가</string>
 
     <string name="text_group_created">그룹이 생성되었습니다</string>
     <string name="text_invalid_access">잘못된 접근입니다</string>
+
+    <string name="text_init_setting">초기 설정 진행중</string>
 
     <string name="text_temp">lorem ipsum dolor sit amet</string>
 </resources>
