@@ -23,6 +23,7 @@ import latera.kr.snowonmarch.R;
 import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
 import latera.kr.snowonmarch.fragment.GroupFragment;
+import latera.kr.snowonmarch.util.SynchronizeService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
 	private boolean backPressedOnce;
 
+	@Override
+	public void onStart() {
+		super.onStart();
+
+		// Start synchronization services
+		startService(new Intent(this, SynchronizeService.class));
+	}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

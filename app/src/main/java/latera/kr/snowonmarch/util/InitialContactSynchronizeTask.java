@@ -17,17 +17,18 @@ import latera.kr.snowonmarch.dbo.GroupDBO;
 import latera.kr.snowonmarch.dbo.MessageDBO;
 import latera.kr.snowonmarch.dbo.PersonDBO;
 
-public class MyContactManager extends AsyncTask {
+public class InitialContactSynchronizeTask extends AsyncTask {
 
 	private static final String TAG = "CONTACT_MANAGER";
 
 	private final Context mContext;
 	private final OnSynchronizationFinishedListener mListener;
 
-	public MyContactManager(Context context, OnSynchronizationFinishedListener listener) {
+	public InitialContactSynchronizeTask(Context context, OnSynchronizationFinishedListener listener) {
 		mContext = context;
 		mListener = listener;
 	}
+
 	private void synchronize(Context context) {
 		Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 		String[] projection = new String[] {
@@ -36,6 +37,12 @@ public class MyContactManager extends AsyncTask {
 		};
 
 		Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
+
+		context.getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE)
+				.edit()
+				.putLong(Constants.PREFS_KEY_LAST_SYNC_DATE_CONTACT, System.currentTimeMillis())
+				.apply();
+
 		int idxName = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
 		int idxAddress = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
 
