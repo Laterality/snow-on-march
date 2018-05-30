@@ -1,6 +1,7 @@
 package latera.kr.snowonmarch.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -28,11 +29,14 @@ public class MySmsManager extends AsyncTask {
 		// public static final String INBOX = "content://sms/inbox";
 		// public static final String SENT = "content://sms/sent";
 		// public static final String DRAFT = "content://sms/draft";
+
 		String[] projection = new String[]{
 				Telephony.Sms.ADDRESS, Telephony.Sms.DATE, Telephony.Sms.BODY, Telephony.Sms.TYPE};
 		Uri uri = Telephony.Sms.CONTENT_URI;
+
+		// Query sms
 		Cursor cursor = context.getContentResolver().
-				query(uri, null,
+				query(uri, projection,
 						null, null, null);
 		int idxAddress = cursor.getColumnIndex(Telephony.Sms.ADDRESS);
 		int idxDate = cursor.getColumnIndex(Telephony.Sms.DATE);
@@ -56,20 +60,6 @@ public class MySmsManager extends AsyncTask {
 		cursor.close();
 		realm.commitTransaction();
 		realm.close();
-	}
-
-	public static void onReceiveSms(String address, String body, long date) {
-		Realm realm = Realm.getDefaultInstance();
-
-		PersonDBO sender = realm.where(PersonDBO.class)
-				.equalTo("address", address).findFirst();
-		realm.beginTransaction();
-		MessageDBO msg = realm.copyToRealm(new MessageDBO(address, body, date));
-		if  (sender != null) {
-			msg.setSender(sender);
-			sender.addMessage(msg);
-		}
-		realm.commitTransaction();
 	}
 
 	@Override
